@@ -5,8 +5,8 @@
       <button type="button" class="delete" @click="$parent.cancel('escape')" />
     </header>
     <b-tabs v-model="withdrawType" :animated="false" class="is-modal">
-      <RelayerTab />
       <WalletTab />
+      <RelayerTab />
     </b-tabs>
   </div>
 </template>
@@ -14,12 +14,12 @@
 /* eslint-disable no-console */
 import { mapState, mapMutations } from 'vuex'
 
-import { RelayerTab, WalletTab } from '@/components/settings/tabs'
+import { WalletTab, RelayerTab } from '@/components/settings/tabs'
 
 export default {
   components: {
-    RelayerTab,
-    WalletTab
+    WalletTab,
+    RelayerTab
   },
   props: {
     currency: {
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      withdrawType: 'relayer'
+      withdrawType: 'wallet'
     }
   },
   computed: {
@@ -54,7 +54,7 @@ export default {
   methods: {
     ...mapMutations('application', ['SET_WITHDRAW_TYPE']),
     reset() {
-      this.withdrawType = 'relayer'
+      this.withdrawType = 'wallet'
       this.$root.$emit('resetSettings')
     },
     save() {
